@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Form</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Client Form</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <button type="submit">Save</button>
+            <a href="{% url 'client_list' %}"><button type="button" class="alert">Cancel</button></a>
+        </form>
+    </div>
+</body>
+</html>

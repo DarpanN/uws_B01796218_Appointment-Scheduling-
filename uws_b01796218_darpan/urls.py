@@ -24,15 +24,8 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path("",include('accounts.urls')),
-    #path("products/",include('products.urls')),
-    # path('orders/', include('orders.urls')),
-    # path('payments/', include('payments.urls')),
-    # path('carts/', include('carts.urls')),
-    # path('shippings/', include('shippings.urls')),
-    # path('reviews/', include('reviews.urls')),
-    # path('inventory/', include('inventory.urls')),
-    # path('discounts/', include('discounts.urls')),
-    # path('analytics/', include('analytics.urls')),
-
+    path('scheduling', include('scheduling.urls')),    
 ]
+
+
+

@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'staff_accounts',  # Add this line
-    'scheduling',
+    'scheduling',  # Add your scheduling app
+    'staff_accounts',  # If handling authentication
     
 ]
 
@@ -74,6 +74,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        #'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Global Templates Folder
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
