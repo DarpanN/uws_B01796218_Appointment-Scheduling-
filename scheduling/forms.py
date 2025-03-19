@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, Employee, Service, Appointment, Invoice
+from .models import Client, Employee, Service_Catalogue, Appointment, Invoice
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -11,9 +11,9 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = '__all__'
 
-class ServiceForm(forms.ModelForm):
+class Service_CatalogueForm(forms.ModelForm):
     class Meta:
-        model = Service
+        model = Service_Catalogue
         fields = '__all__'
 
 class AppointmentForm(forms.ModelForm):

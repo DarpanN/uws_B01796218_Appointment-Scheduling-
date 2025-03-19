@@ -1,15 +1,7 @@
 
-# # Create your views here.
-# from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required
-
-# @login_required
-# def dashboard(request):
-#     return render(request, 'dashboard.html')  # Refers to global templates folder
-
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Client, Employee, Service, Appointment, Invoice
-from .forms import ClientForm, EmployeeForm, ServiceForm, AppointmentForm, InvoiceForm
+from .models import Client, Employee, Service_Catalogue, Appointment, Invoice
+from .forms import ClientForm, EmployeeForm, Service_CatalogueForm, AppointmentForm, InvoiceForm
 
 # CRUD for Clients
 def client_list(request):

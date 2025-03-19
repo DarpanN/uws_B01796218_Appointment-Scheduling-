@@ -15,7 +15,7 @@ class Employee(models.Model):
     employee_name = models.CharField(max_length=255)
     employee_mobile = models.CharField(max_length=15)
 
-class Service(models.Model):
+class Service_Catalogue(models.Model):
     service_id = models.AutoField(primary_key=True)
     service_name = models.CharField(max_length=255)
     service_description = models.TextField()
@@ -25,7 +25,7 @@ class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service_Catalogue, on_delete=models.CASCADE)
     appointment_date = models.DateField()
     cost = models.DecimalField(max_digits=10, decimal_places=2)
     expenses = models.DecimalField(max_digits=10, decimal_places=2)
@@ -33,7 +33,7 @@ class Appointment(models.Model):
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
     invoice_number = models.CharField(max_length=20, unique=True)
-    total_cost = models.DecimalField(max_digits=10, decimal_places=2)
-    discount = models.DecimalField(max_digits=10, decimal_places=2)
-    final_total = models.DecimalField(max_digits=10, decimal_places=2)
+    invoice_cost = models.DecimalField(max_digits=10, decimal_places=2)
+    invoice_discount = models.DecimalField(max_digits=10, decimal_places=2)
+    invoice_total = models.DecimalField(max_digits=10, decimal_places=2)
     appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)

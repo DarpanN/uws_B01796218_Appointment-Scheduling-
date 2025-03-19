@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scheduling',  # Add your scheduling app
-    'staff_accounts',  # If handling authentication
+    'staff_accounts_SME',  # If handling authentication
     
 ]
 
@@ -99,7 +99,7 @@ DATABASES = env.db()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'uws_B01796218_DarpanN_DDI', #Database Name
+        'NAME': 'uws_B01796218_DarpanN_DDI_Appointment_Scheduling', #Database Name
         'USER': 'postgres', #Database UserName
         'PASSWORD': 'postgresql', #Database Password
         'HOST': 'localhost',  # Or the IP address/hostname of your PostgreSQL server
