@@ -1,0 +1,30 @@
+<!-- dashboard/templates/dashboard/employee_create.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+  <h2>Create Employee</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" class="form-control" name="first_name" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" name="surname" required>
+    </div>
+    <div class="form-group">
+      <label for="employee_mobile">Mobile</label>
+      <input type="text" class="form-control" name="employee_mobile" required>
+    </div>
+    <div class="form-group">
+      <label for="employee_payroll_number">Payroll Number</label>
+      <input type="text" class="form-control" name="employee_payroll_number" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Employee</button>
+  </form>
+{% endblock %}

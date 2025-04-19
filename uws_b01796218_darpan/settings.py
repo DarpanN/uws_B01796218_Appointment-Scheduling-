@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     # Other installed apps
+    'dashboard',
     'scheduling',  # Add your scheduling app
     'staff_accounts_SME',  # If handling authentication
     

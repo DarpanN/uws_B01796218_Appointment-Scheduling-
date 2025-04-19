@@ -1,0 +1,108 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h4 class="mb-0">Create New Invoice</h4>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+          <!-- Select Client -->
+          <div class="col-12 col-md-3">
+            <label for="client" class="form-label">Select Client</label>
+            <select name="client" class="form-control" required>
+              <option value="">Select Client</option>
+              {% for client in clients %}
+                <option value="{{ client.client_id }}">{{ client.first_name }} {{ client.surname }}</option>
+              {% empty %}
+                <option value="">No clients available</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Select Appointment -->
+          <div class="col-12 col-md-3">
+            <label for="appointment" class="form-label">Select Appointment</label>
+            <select name="appointment" class="form-control" required>
+              <option value="">Select Appointment</option>
+              {% for appointment in appointments %}
+                <option value="{{ appointment.appointment_id }}">{{ appointment.client.first_name }} {{ appointment.client.surname }} - {{ appointment.appointment_date }}</option>
+              {% empty %}
+                <option value="">No appointments available</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Select Employee -->
+          <div class="col-12 col-md-3">
+            <label for="employee" class="form-label">Select Employee</label>
+            <select name="employee" class="form-control" required>
+              <option value="">Select Employee</option>
+              {% for employee in employees %}
+                <option value="{{ employee.employee_id }}">{{ employee.first_name }} {{ employee.surname }}</option>
+              {% empty %}
+                <option value="">No employees available</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Select Service -->
+          <div class="col-12 col-md-3">
+            <label for="service" class="form-label">Select Service</label>
+            <select name="service" class="form-control" required>
+              <option value="">Select Service</option>
+              {% for service in services %}
+                <option value="{{ service.service_id }}">{{ service.service_name }}</option>
+              {% empty %}
+                <option value="">No services available</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <!-- Invoice Number -->
+          <div class="col-12 col-md-3">
+            <label for="invoice_number" class="form-label">Invoice Number</label>
+            <input type="text" name="invoice_number" class="form-control" value="{{ invoice_form.invoice_number.value }}" required>
+          </div>
+
+          <!-- Invoice Date -->
+          <div class="col-12 col-md-3">
+            <label for="invoice_date" class="form-label">Invoice Date</label>
+            <input type="date" name="invoice_date" class="form-control" value="{{ invoice_form.invoice_date.value }}" required>
+          </div>
+
+          <!-- Invoice Cost -->
+          <div class="col-12 col-md-3">
+            <label for="invoice_cost" class="form-label">Invoice Cost (£)</label>
+            <input type="number" name="invoice_cost" class="form-control" value="{{ invoice_form.invoice_cost.value }}" step="0.01" required>
+          </div>
+
+          <!-- Invoice Discount -->
+          <div class="col-12 col-md-3">
+            <label for="invoice_discount" class="form-label">Discount (£)</label>
+            <input type="number" name="invoice_discount" class="form-control" value="{{ invoice_form.invoice_discount.value }}" step="0.01" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <!-- Invoice Total -->
+          <div class="col-12 col-md-3">
+            <label for="invoice_total" class="form-label">Invoice Total (£)</label>
+            <input type="number" name="invoice_total" class="form-control" value="{{ invoice_form.invoice_total.value }}" step="0.01" readonly>
+          </div>
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success btn-lg">Create Invoice</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

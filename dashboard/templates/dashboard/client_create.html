@@ -1,0 +1,30 @@
+<!-- dashboard/templates/dashboard/client_create.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+  <h2>Create Client</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" class="form-control" name="first_name" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" name="surname" required>
+    </div>
+    <div class="form-group">
+      <label for="client_mobile">Mobile</label>
+      <input type="text" class="form-control" name="client_mobile" required>
+    </div>
+    <div class="form-group">
+      <label for="client_email">Email</label>
+      <input type="email" class="form-control" name="client_email" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Client</button>
+  </form>
+{% endblock %}

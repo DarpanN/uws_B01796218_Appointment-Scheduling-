@@ -1,0 +1,101 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h4 class="mb-0">Add New Employee</h4>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Section 1: Personal Information -->
+        <div class="row mb-3">
+          <div class="col-12 col-md-2">
+            <label for="title" class="form-label">Title</label>
+            <select name="title" class="form-select" required>
+              <option value="" disabled selected>Select title</option>
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Miss">Miss</option>
+              <option value="Ms">Ms</option>
+              <option value="Dr">Dr</option>
+              <option value="Prof">Prof</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" name="first_name" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="middle_name" class="form-label">Middle Name</label>
+            <input type="text" name="middle_name" class="form-control">
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="surname" class="form-label">Surname</label>
+            <input type="text" name="surname" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="employee_email" class="form-label">Email</label>
+            <input type="email" name="employee_email" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="employee_phone" class="form-label">Phone</label>
+            <input type="text" name="employee_phone" class="form-control" required>
+          </div>
+        </div>
+
+        <!-- Section 2: Job Information -->
+        <div class="row mb-3">
+          <div class="col-12 col-md-2">
+            <label for="job_title" class="form-label">Job Title</label>
+            <input type="text" name="job_title" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="department" class="form-label">Department</label>
+            <input type="text" name="department" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="position" class="form-label">Position</label>
+            <input type="text" name="position" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="address_line_1" class="form-label">Address Line 1</label>
+            <input type="text" name="address_line_1" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="address_line_2" class="form-label">Address Line 2</label>
+            <input type="text" name="address_line_2" class="form-control">
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="city" class="form-label">City</label>
+            <input type="text" name="city" class="form-control" required>
+          </div>
+        </div>
+
+        <!-- Section 3: Additional Information -->
+        <div class="row mb-3">
+          <div class="col-12 col-md-2">
+            <label for="county" class="form-label">County</label>
+            <input type="text" name="county" class="form-control">
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="postcode" class="form-label">Postcode</label>
+            <input type="text" name="postcode" class="form-control" required>
+          </div>
+          <div class="col-12 col-md-2">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="country" class="form-control" value="United Kingdom" required>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success btn-lg">Add Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h4>Update Appointment</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="client" class="form-label">Client</label>
+              {{ form.client }}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="employee" class="form-label">Employee</label>
+              {{ form.employee }}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="service" class="form-label">Service</label>
+              {{ form.service }}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="appointment_date" class="form-label">Appointment Date</label>
+              {{ form.appointment_date }}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="appointment_duration" class="form-label">Appointment Duration</label>
+              {{ form.appointment_duration }}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="status" class="form-label">Status</label>
+              {{ form.status }}
+            </div>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Update Appointment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

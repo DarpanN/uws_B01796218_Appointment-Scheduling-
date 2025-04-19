@@ -1,0 +1,64 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h4 class="mb-0">Create New Invoice Row</h4>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+          <!-- Select Invoice -->
+          <div class="col-12 col-md-4">
+            <label for="invoice" class="form-label">Select Invoice</label>
+            {{ form.invoice }}
+          </div>
+
+          <!-- Select Appointment -->
+          <div class="col-12 col-md-4">
+            <label for="appointment" class="form-label">Select Appointment</label>
+            {{ form.appointment }}
+          </div>
+
+          <!-- Service Cost -->
+          <div class="col-12 col-md-4">
+            <label for="service_cost" class="form-label">Service Cost (£)</label>
+            {{ form.service_cost }}
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success btn-lg">Add Invoice Row</button>
+        </div>
+      </form>
+      
+      <!-- Display Existing Invoice Rows -->
+      <div class="mt-4">
+        <h5>Existing Invoice Rows</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Invoice</th>
+              <th>Appointment</th>
+              <th>Service Cost (£)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in invoice_rows %}
+            <tr>
+              <td>{{ row.invoice.invoice_number }}</td>
+              <td>{{ row.appointment.appointment_id }}</td>
+              <td>{{ row.service_cost }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

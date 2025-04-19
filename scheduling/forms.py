@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client, Employee, Service_Catalogue, Appointment, Invoice
+from .models import Client, Employee, ServiceCatalogue, EmployeeService, ClientAppointment, Invoice, InvoiceRow
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -11,17 +11,27 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = '__all__'
 
-class Service_CatalogueForm(forms.ModelForm):
+class ServiceCatalogueForm(forms.ModelForm):
     class Meta:
-        model = Service_Catalogue
+        model = ServiceCatalogue
         fields = '__all__'
 
-class AppointmentForm(forms.ModelForm):
+class EmployeeServiceForm(forms.ModelForm):
     class Meta:
-        model = Appointment
+        model = EmployeeService
+        fields = '__all__'
+
+class ClientAppointmentForm(forms.ModelForm):
+    class Meta:
+        model = ClientAppointment
         fields = '__all__'
 
 class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
+        fields = '__all__'
+
+class InvoiceRowForm(forms.ModelForm):
+    class Meta:
+        model = InvoiceRow
         fields = '__all__'

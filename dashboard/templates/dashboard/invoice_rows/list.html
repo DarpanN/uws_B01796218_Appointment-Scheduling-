@@ -1,0 +1,84 @@
+{% comment %} <!-- templates/dashboard/invoice_rows/list.html -->
+
+<h1>Invoice Row List</h1>
+
+{% if page_obj %}
+  <table border="1">
+    <tr>
+      <th>Invoice Row ID</th>
+      <th>Invoice</th>
+      <th>Appointment</th>
+      <th>Service Cost</th>
+    </tr>
+    {% for invoice_row in page_obj %}
+      <tr>
+        <td>{{ invoice_row.invoice_row_id }}</td>
+        <td>{{ invoice_row.invoice }}</td>
+        <td>{{ invoice_row.appointment }}</td>
+        <td>{{ invoice_row.service_cost }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No invoice rows found.</p>
+{% endif %} {% endcomment %}
+
+
+
+
+
+<h1>Invoice Row List</h1>
+
+<!-- Button to Create New Invoice Row -->
+<a href="{% url 'invoice_row_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">Create New Invoice Row</a>
+
+{% if page_obj %}
+  <table border="1" class="table table-striped">
+    <tr>
+      <th>Invoice Row ID</th>
+      <th>Invoice</th>
+      <th>Appointment</th>
+      <th>Service Cost</th>
+      <th>Actions</th>  <!-- Added Actions column for CRUD -->
+    </tr>
+    {% for invoice_row in page_obj %}
+      <tr>
+        <td>{{ invoice_row.invoice_row_id }}</td>
+        <td>{{ invoice_row.invoice }}</td>
+        <td>{{ invoice_row.appointment }}</td>
+        <td>{{ invoice_row.service_cost }}</td>
+
+        <!-- Added Action Buttons for Edit and Delete -->
+        <td>
+          <a href="{% url 'invoice_row_update' invoice_row.pk %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'invoice_row_delete' invoice_row.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this invoice row?')">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next »</a>
+    {% endif %}
+  </div>
+
+{% else %}
+  <p>No invoice rows found.</p>
+{% endif %}

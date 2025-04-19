@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-4">
+    <h1>Employee List</h1>
+    <a href="{% url 'employee_create' %}" class="btn btn-primary mb-3">Add New Employee</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Mobile</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.employee_id }}</td>
+                <td>{{ employee.first_name }} {{ employee.surname }}</td>
+                <td>{{ employee.role }}</td>
+                <td>{{ employee.employee_mobile }}</td>
+                <td>
+                    <a href="{% url 'employee_update' employee.employee_id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'employee_delete' employee.employee_id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

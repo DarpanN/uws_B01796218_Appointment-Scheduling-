@@ -1,0 +1,88 @@
+{% comment %} <!-- templates/dashboard/services/list.html -->
+
+<h1>Service Catalogue</h1>
+
+{% if page_obj %}
+  <table border="1">
+    <tr>
+      <th>Service ID</th>
+      <th>Service Name</th>
+      <th>Description</th>
+      <th>Hourly Rate</th>
+      <th>VAT Rate</th>
+    </tr>
+    {% for service in page_obj %}
+      <tr>
+        <td>{{ service.service_id }}</td>
+        <td>{{ service.service_name }}</td>
+        <td>{{ service.service_description }}</td>
+        <td>{{ service.service_hourly_rate }}</td>
+        <td>{{ service.vat_rate }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No services found.</p>
+{% endif %} {% endcomment %}
+
+
+
+
+
+<h1>Service Catalogue</h1>
+
+<!-- Button to Create New Service -->
+<a href="{% url 'service_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">Create New Service</a>
+
+{% if page_obj %}
+  <table border="1" class="table table-striped">
+    <tr>
+      <th>Service ID</th>
+      <th>Service Name</th>
+      <th>Description</th>
+      <th>Hourly Rate</th>
+      <th>VAT Rate</th>
+      <th>Actions</th>  <!-- Added Actions column for CRUD -->
+    </tr>
+    {% for service in page_obj %}
+      <tr>
+        <td>{{ service.service_id }}</td>
+        <td>{{ service.service_name }}</td>
+        <td>{{ service.service_description }}</td>
+        <td>{{ service.service_hourly_rate }}</td>
+        <td>{{ service.vat_rate }}</td>
+
+        <!-- Added Action Buttons for Edit and Delete -->
+        <td>
+          <a href="{% url 'service_update' service.service_id %}" class="btn btn-sm btn-warning">Edit</a>
+          <a href="{% url 'service_delete' service.service_id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this service?')">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next »</a>
+    {% endif %}
+  </div>
+
+{% else %}
+  <p>No services found.</p>
+{% endif %}

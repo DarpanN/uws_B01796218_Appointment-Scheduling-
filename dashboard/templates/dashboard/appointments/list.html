@@ -1,0 +1,158 @@
+{% comment %} <!-- templates/dashboard/appointments/list.html -->
+
+<h1>Client Appointments</h1>
+
+<!-- Count Today's Appointments -->
+<p><strong>Today's Appointments:</strong> {{ todays_appointments_count }}</p>
+
+{% if page_obj %}
+  <table border="1">
+    <tr>
+      <th>Appointment ID</th>
+      <th>Client</th>
+      <th>Employee</th>
+      <th>Service</th>
+      <th>Date</th>
+      <th>Status</th>  <!-- Added the Status column -->
+    </tr>
+    {% for appointment in page_obj %}
+      <tr>
+        <td>{{ appointment.appointment_id }}</td>
+        <td>{{ appointment.client }}</td>
+        <td>{{ appointment.employee }}</td>
+        <td>{{ appointment.service }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td>{{ appointment.status }}</td>  <!-- Display the Status -->
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No appointments found.</p>
+{% endif %} {% endcomment %}
+
+
+
+
+{% comment %} <h1>Client Appointments</h1>
+
+<!-- Count Today's Appointments -->
+<p><strong>Today's Appointments:</strong> {{ todays_appointments_count }}</p>
+
+<!-- Add New Appointment Link -->
+<p><a href="{% url 'appointment_create' %}">Add New Appointment</a></p>
+
+{% if page_obj %}
+  <table border="1">
+    <tr>
+      <th>Appointment ID</th>
+      <th>Client</th>
+      <th>Employee</th>
+      <th>Service</th>
+      <th>Date</th>
+      <th>Status</th>  <!-- Added the Status column -->
+      <th>Actions</th> <!-- Added the Actions column -->
+    </tr>
+    {% for appointment in page_obj %}
+      <tr>
+        <td>{{ appointment.appointment_id }}</td>
+        <td>{{ appointment.client }}</td>
+        <td>{{ appointment.employee }}</td>
+        <td>{{ appointment.service }}</td>
+        <td>{{ appointment.appointment_date }}</td>
+        <td>{{ appointment.status }}</td>  <!-- Display the Status -->
+        <td>
+          <!-- Edit and Delete Links based on the 'appointment' pk -->
+          <a href="{% url 'appointment_update' appointment.pk %}">Edit</a> |
+          <a href="{% url 'appointment_delete' appointment.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No appointments found.</p>
+{% endif %} {% endcomment %}
+
+
+
+
+
+
+
+
+<h1>Client Appointments</h1>
+
+<!-- Count Today's Appointments -->
+<p><strong>Today's Appointments:</strong> {{ todays_appointments_count }}</p>
+
+<!-- Add New Appointment Link -->
+<p>
+  <a href="{% url 'appointment_create' %}" class="btn btn-primary">Add New Appointment</a>
+</p>
+
+{% if page_obj %}
+  <table border="1" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Appointment ID</th>
+        <th>Client</th>
+        <th>Employee</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th> <!-- Added Actions column -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in page_obj %}
+        <tr>
+          <td>{{ appointment.appointment_id }}</td>
+          <td>{{ appointment.client }}</td>
+          <td>{{ appointment.employee }}</td>
+          <td>{{ appointment.service }}</td>
+          <td>{{ appointment.appointment_date }}</td>
+          <td>{{ appointment.status }}</td>  <!-- Display the Status -->
+          <td>
+            <!-- Edit and Delete Links based on the 'appointment' pk -->
+            <a href="{% url 'appointment_update' appointment.pk %}" class="btn btn-sm btn-warning">Edit</a> |
+            <a href="{% url 'appointment_delete' appointment.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this appointment?')">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No appointments found.</p>
+{% endif %}

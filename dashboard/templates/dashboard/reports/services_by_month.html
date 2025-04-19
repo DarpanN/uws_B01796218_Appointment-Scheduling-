@@ -1,0 +1,22 @@
+{% extends "dashboard/dashboard.html" %}
+{% block content %}
+<h2>Services by Month</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Service</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in services %}
+        <tr>
+            <td>{{ item.month|date:"F Y" }}</td>
+            <td>{{ item.service__service_name }}</td>
+            <td>{{ item.count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

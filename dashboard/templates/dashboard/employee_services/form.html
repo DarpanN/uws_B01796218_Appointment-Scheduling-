@@ -1,0 +1,55 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h4 class="mb-0">Assign Service to Employee</h4>
+    </div>
+    <div class="card-body p-4">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+          <!-- Employee Selection -->
+          <div class="col-12 col-md-6">
+            <label for="employee" class="form-label">Select Employee</label>
+            {{ form.employee }}
+          </div>
+
+          <!-- Service Selection -->
+          <div class="col-12 col-md-6">
+            <label for="service" class="form-label">Select Service</label>
+            {{ form.service }}
+          </div>
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success btn-lg">Assign Service</button>
+        </div>
+      </form>
+
+      <!-- Existing Employee Services Display -->
+      <div class="mt-4">
+        <h5>Existing Employee Services</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Service</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for employee_service in employee_services %}
+            <tr>
+              <td>{{ employee_service.employee }}</td>
+              <td>{{ employee_service.service }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

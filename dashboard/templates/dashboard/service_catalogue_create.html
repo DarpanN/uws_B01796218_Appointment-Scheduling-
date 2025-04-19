@@ -1,0 +1,26 @@
+<!-- dashboard/templates/dashboard/service_catalogue_create.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+  <h2>Create Service</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="service_name">Service Name</label>
+      <input type="text" class="form-control" name="service_name" required>
+    </div>
+    <div class="form-group">
+      <label for="service_description">Description</label>
+      <textarea class="form-control" name="service_description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="service_hourly_rate">Hourly Rate</label>
+      <input type="text" class="form-control" name="service_hourly_rate" required>
+    </div>
+    <div class="form-group">
+      <label for="vat_rate">VAT Rate</label>
+      <input type="text" class="form-control" name="vat_rate" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Service</button>
+  </form>
+{% endblock %}

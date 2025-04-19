@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-4">
+    <h1>Client List</h1>
+    <a href="{% url 'client_create' %}" class="btn btn-primary mb-3">Add New Client</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td>{{ client.client_id }}</td>
+                <td>{{ client.first_name }} {{ client.surname }}</td>
+                <td>{{ client.client_email }}</td>
+                <td>{{ client.client_mobile }}</td>
+                <td>
+                    <a href="{% url 'client_update' client.client_id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'client_delete' client.client_id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

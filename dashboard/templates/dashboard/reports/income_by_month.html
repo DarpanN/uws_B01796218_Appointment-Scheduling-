@@ -1,0 +1,20 @@
+{% extends "dashboard/dashboard.html" %}
+{% block content %}
+<h2>Income by Month</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Total Income (£)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in income %}
+        <tr>
+            <td>{{ item.month|date:"F Y" }}</td>
+            <td>£{{ item.total_income }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

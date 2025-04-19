@@ -1,0 +1,99 @@
+{% comment %} {% comment %} {% comment %} 
+
+<!-- templates/dashboard/clients/list.html -->
+
+<h1>Client List</h1>
+
+{% if page_obj %}
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th>Actions</th>  <!-- Added Actions column for CRUD -->
+    </tr>
+    {% for client in page_obj %}
+      <tr>
+        <td>{{ client.client_id }}</td>
+        <td>{{ client.title }} {{ client.first_name }} {{ client.surname }}</td>
+        <td>{{ client.client_email }}</td>
+        <td>{{ client.client_mobile }}</td>
+        <td>{{ client.address_line_1 }}</td>
+        
+        <!-- Added Action Buttons for Edit and Delete -->
+        <td>
+          <a href="{% url 'client_update' client.client_id %}" class="btn btn-sm btn-warning">Edit</a> 
+          <a href="{% url 'client_delete' client.client_id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this client?')">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No clients found.</p>
+{% endif %}
+
+<!-- Button to Create New Client -->
+<a href="{% url 'client_create' %}" class="btn btn-primary" style="margin-top: 20px;">Create New Client</a> <!-- Added button to create new client --> {% endcomment %}
+
+
+ 
+<h1>Client List</h1>
+
+<!-- Button to Create New Client -->
+<a href="{% url 'client_create' %}" class="btn btn-primary" style="margin-bottom: 20px;">Create New Client</a>
+
+{% if page_obj %}
+  <table border="1" class="table table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th>Actions</th>  <!-- Added Actions column for CRUD -->
+    </tr>
+    {% for client in page_obj %}
+      <tr>
+        <td>{{ client.client_id }}</td>
+        <td>{{ client.title }} {{ client.first_name }} {{ client.surname }}</td>
+        <td>{{ client.client_email }}</td>
+        <td>{{ client.client_mobile }}</td>
+        <td>{{ client.address_line_1 }}</td>
+
+        <!-- Added Action Buttons for Edit and Delete -->
+        <td>
+          <a href="{% url 'client_update' client.client_id %}" class="btn btn-sm btn-warning">Edit</a> 
+          <a href="{% url 'client_delete' client.client_id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this client?')">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <!-- Pagination Controls -->
+  <div style="margin-top: 20px;">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">« Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next »</a>
+    {% endif %}
+  </div>
+{% else %}
+  <p>No clients found.</p>
+{% endif %}  
+
+

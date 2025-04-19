@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-4">
+    <h1>Invoice List</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Invoice Number</th>
+                <th>Invoice Date</th>
+                <th>Total Cost</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice in invoices %}
+            <tr>
+                <td>{{ invoice.invoice_number }}</td>
+                <td>{{ invoice.invoice_date }}</td>
+                <td>{{ invoice.invoice_total }}</td>
+                <td>
+                    <a href="{% url 'invoice_view' invoice.invoice_id %}" class="btn btn-info btn-sm">View</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Service</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-4">
+    <h1>Employee Service Assignments</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Service</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee_service in employee_services %}
+            <tr>
+                <td>{{ employee_service.employee.first_name }} {{ employee_service.employee.surname }}</td>
+                <td>{{ employee_service.service.service_name }}</td>
+                <td>
+                    <a href="{% url 'employee_service_delete' employee_service.id %}" class="btn btn-danger btn-sm">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

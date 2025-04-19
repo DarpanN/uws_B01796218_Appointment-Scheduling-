@@ -1,0 +1,51 @@
+{% comment %} {% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg rounded-4">
+        <div class="card-header bg-primary text-white rounded-top-4">
+            <h4 class="mb-0">Invoice Report: {{ invoice.invoice_number }}</h4>
+        </div>
+        <div class="card-body p-4">
+            <h5>Invoice Details</h5>
+            <p><strong>Invoice Date:</strong> {{ invoice.invoice_date }}</p>
+            <p><strong>Total Cost:</strong> £{{ invoice.invoice_total }}</p>
+            <p><strong>Discount:</strong> £{{ invoice.invoice_discount }}</p>
+
+            <h5 class="mt-4">Invoice Items</h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Appointment</th>
+                        <th>Service</th>
+                        <th>Service Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in invoice_rows %}
+                    <tr>
+                        <td>{{ row.appointment }}</td>
+                        <td>{{ row.appointment.service.service_name }}</td>
+                        <td>£{{ row.service_cost }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %} {% endcomment %}
+
+
+
+
+
+
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Invoice {{ invoice_id }} created successfully!</h2>
+    <a href="{% url 'create_invoice' %}" class="btn btn-primary mt-3">Create Another</a>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% comment %} {% extends "dashboard/dashboard.html" %}
+{% block content %}
+<h2>Income by Day</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Service</th>
+            <th>Total Income (£)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in income %}
+        <tr>
+            <td>{{ item.day|date:"F j, Y" }}</td>
+            <td>{{ item.service__name }}</td>
+            <td>£{{ item.total_income }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} {% endcomment %}

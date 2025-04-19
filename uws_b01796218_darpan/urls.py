@@ -19,15 +19,24 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib import admin
+from django.shortcuts import redirect
 from . import views
-from .views import client_list, employee_list
+from .views import client_list, employee_list, employee_service_list
 
 urlpatterns = [
+    # Redirect the root URL to the admin login page
+    path('', lambda request: redirect('/admin/')),  # Redirects homepage to /admin/
+    
     path('admin/', admin.site.urls),
+    path('staff/', include('staff_accounts_SME.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('scheduling/', include('scheduling.urls')),
-    path('clients/', client_list, name='client_list'),
-    path('employees/', employee_list, name='employee_list'),    
+    
+
+
 ]
+
+
 
 
 

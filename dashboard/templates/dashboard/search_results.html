@@ -1,0 +1,185 @@
+{% comment %} <!-- templates/dashboard/search_results.html -->
+
+{% extends 'dashboard/dashboard.html' %}
+
+{% block content %}
+    <h1>Search Results for: "{{ query }}"</h1>
+
+    <h3>Clients</h3>
+    <ul>
+        {% for client in clients %}
+            <li>{{ client.first_name }} {{ client.surname }} (ID: {{ client.client_id }})</li>
+        {% empty %}
+            <li>No clients found matching your search.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Employees</h3>
+    <ul>
+        {% for employee in employees %}
+            <li>{{ employee.first_name }} {{ employee.surname }} (ID: {{ employee.employee_id }})</li>
+        {% empty %}
+            <li>No employees found matching your search.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Services</h3>
+    <ul>
+        {% for service in services %}
+            <li>{{ service.service_name }} (ID: {{ service.service_id }})</li>
+        {% empty %}
+            <li>No services found matching your search.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Appointments</h3>
+    <ul>
+        {% for appointment in appointments %}
+            <li>Appointment ID: {{ appointment.appointment_id }} for {{ appointment.client.first_name }} {{ appointment.client.surname }} with {{ appointment.employee.first_name }} {{ appointment.employee.surname }}</li>
+        {% empty %}
+            <li>No appointments found matching your search.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Invoices</h3>
+    <ul>
+        {% for invoice in invoices %}
+            <li>Invoice ID: {{ invoice.invoice_id }} (Number: {{ invoice.invoice_number }})</li>
+        {% empty %}
+            <li>No invoices found matching your search.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Invoice Rows</h3>
+    <ul>
+        {% for invoice_row in invoice_rows %}
+            <li>Invoice Row ID: {{ invoice_row.invoice_row_id }} for Appointment ID: {{ invoice_row.appointment.appointment_id }}</li>
+        {% empty %}
+            <li>No invoice rows found matching your search.</li>
+        {% endfor %}
+    </ul>
+{% endblock %} {% endcomment %}
+
+
+
+
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{% static 'dashboard/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center mb-4">Search Results for "{{ query }}"</h2>
+
+        <div class="row g-4">
+            {% if clients %}
+                <div class="col-12">
+                    <h4>Clients</h4>
+                    <ul class="list-group">
+                        {% for client in clients %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ client.client_id }} —
+                                {{ client.first_name }} {{ client.surname }} ({{ client.client_mobile }})
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if employees %}
+                <div class="col-12">
+                    <h4>Employees</h4>
+                    <ul class="list-group">
+                        {% for emp in employees %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ emp.employee_id }} —
+                                {{ emp.first_name }} {{ emp.surname }} ({{ emp.employee_mobile }})
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if services %}
+                <div class="col-12">
+                    <h4>Services</h4>
+                    <ul class="list-group">
+                        {% for service in services %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ service.service_id }} —
+                                {{ service.service_name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if appointments %}
+                <div class="col-12">
+                    <h4>Appointments</h4>
+                    <ul class="list-group">
+                        {% for appt in appointments %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ appt.appointment_id }} —
+                                Client: {{ appt.client.first_name }} {{ appt.client.surname }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if invoices %}
+                <div class="col-12">
+                    <h4>Invoices</h4>
+                    <ul class="list-group">
+                        {% for inv in invoices %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ inv.invoice_id }} —
+                                Number: {{ inv.invoice_number }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if invoice_rows %}
+                <div class="col-12">
+                    <h4>Invoice Rows</h4>
+                    <ul class="list-group">
+                        {% for row in invoice_rows %}
+                            <li class="list-group-item">
+                                <strong>ID:</strong> {{ row.invoice_row_id }} —
+                                Client: {{ row.appointment.client.first_name }} {{ row.appointment.client.surname }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if not clients and not employees and not services and not appointments and not invoices and not invoice_rows %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center" role="alert">
+                        No results found for "{{ query }}".
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2025 Darpan Narayan Chaudhary (B01796218). All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

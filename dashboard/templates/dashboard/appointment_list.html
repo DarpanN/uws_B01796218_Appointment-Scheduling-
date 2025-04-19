@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Appointments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-4">
+    <h1>Client Appointments</h1>
+    <a href="{% url 'appointment_create' %}" class="btn btn-primary mb-3">Schedule New Appointment</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Client</th>
+                <th>Employee</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Duration (hours)</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.appointment_id }}</td>
+                <td>{{ appointment.client.first_name }} {{ appointment.client.surname }}</td>
+                <td>{{ appointment.employee.first_name }} {{ appointment.employee.surname }}</td>
+                <td>{{ appointment.service.service_name }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_duration }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    <a href="{% url 'appointment_update' appointment.appointment_id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'appointment_delete' appointment.appointment_id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
